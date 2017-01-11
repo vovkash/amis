@@ -1,0 +1,46 @@
+﻿<Window x:Class="TestWriting.View.TasksToDoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodel="clr-namespace:TestWriting.ViewModel"
+        Title="Work execution" Style="{StaticResource VS2012WindowStyle}" Height="385" Width="799" ResizeMode="NoResize" Closing="Window_Closing" Loaded="Window_Loaded" WindowStartupLocation="CenterOwner">
+    <Window.DataContext>
+        <viewmodel:TasksToDoViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <GroupBox Header="Work info" Margin="10,10,162,0" VerticalAlignment="Top" Height="83">
+            <Grid Height="60" VerticalAlignment="Top" Margin="0,0,-2,0">
+                <TextBox IsEnabled="False" HorizontalAlignment="Left"  Margin="10,27,0,0" TextWrapping="Wrap" Text="{Binding WorkName, Mode=OneWay, TargetNullValue=-}" VerticalAlignment="Top" Width="135"/>
+                <Label Content="Name" HorizontalAlignment="Left" Margin="11,-1,0,0" VerticalAlignment="Top"/>
+                <TextBox IsEnabled="False" HorizontalAlignment="Left"  Margin="157,27,0,0" TextWrapping="Wrap" Text="{Binding WorkSubject, Mode=OneWay, TargetNullValue=-}" VerticalAlignment="Top" Width="136"/>
+                <Label Content="Subject" HorizontalAlignment="Left" Margin="158,-1,0,0" VerticalAlignment="Top"/>
+                <TextBox IsEnabled="False" HorizontalAlignment="Left"  Margin="306,27,0,0" TextWrapping="Wrap" Text="{Binding WorkTheme, Mode=OneWay, TargetNullValue=-}" VerticalAlignment="Top" Width="135" >
+                </TextBox>
+                <Label Content="Theme" HorizontalAlignment="Left" Margin="307,-1,0,0" VerticalAlignment="Top"/>
+                <TextBox IsEnabled="False" HorizontalAlignment="Left"  Margin="455,27,0,0" TextWrapping="Wrap" Text="{Binding WhosWork, Mode=OneWay, TargetNullValue=-}" VerticalAlignment="Top" Width="135"/>
+                <Label x:Name="lbl_whos" Content="Teacher" HorizontalAlignment="Left" Margin="457,-1,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Exercises" Margin="10,98,13,10">
+            <DataGrid ItemsSource="{Binding TodoList, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" Margin="2,10,2,9" LoadingRow="DataGrid_LoadingRow" AutoGenerateColumns="False" IsReadOnly="True" RowHeaderWidth="30">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Binding="{Binding ExerciseName}" ClipboardContentBinding="{x:Null}" Header="Exercise name"/>
+                    <DataGridTextColumn Binding="{Binding WorkPoint}" ClipboardContentBinding="{x:Null}" Header="Points"/>
+                    <DataGridTextColumn Binding="{Binding MaxPoints}" ClipboardContentBinding="{x:Null}" Header="Maximum points"/>
+                    <DataGridTemplateColumn x:Name="column_action" Width="100" ClipboardContentBinding="{x:Null}" Header="Action">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Tag="{Binding}" Click="ButtonOpen_Click" Content="Open"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <GroupBox x:Name="group_send" Header="Send it!" HorizontalAlignment="Right" Margin="0,10,13,0" VerticalAlignment="Top" Width="144" Height="83">
+            <Button x:Name="btn_send" Content="Finish work" HorizontalAlignment="Right" Margin="0,20,19,0" VerticalAlignment="Top" Width="92" Click="Button_Click"/>
+        </GroupBox>
+
+    </Grid>
+</Window>

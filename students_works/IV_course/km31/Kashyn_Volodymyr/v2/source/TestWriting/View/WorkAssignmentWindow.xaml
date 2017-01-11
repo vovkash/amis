@@ -1,0 +1,31 @@
+﻿<Window x:Class="TestWriting.View.WorkAssignmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodel="clr-namespace:TestWriting.ViewModel"
+        Title="Work assignment" Height="266" Width="354"  Style="{StaticResource VS2012WindowStyle}" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+
+    <Window.DataContext>
+        <viewmodel:WorkAssignmentViewModel/>
+    </Window.DataContext>
+
+    <AdornerDecorator>
+        <Grid Width="356">
+            <GroupBox Header="Select a target" HorizontalAlignment="Left" Margin="24,91,0,0" VerticalAlignment="Top" Height="73" Width="276">
+                <Grid Margin="0,0,-2,0" >
+                    <RadioButton IsChecked="True"  Content="Student" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top"/>
+                    <RadioButton IsChecked="{Binding IsGroup, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" Content="Group" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top"/>
+                    <ComboBox ItemsSource="{Binding AssignList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding AssignTo, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" Margin="0,13,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="166"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Work settings" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Height="76" Width="276">
+                <Grid >
+                    <TextBox IsEnabled="False" HorizontalAlignment="Left"  Margin="30,22,0,0" TextWrapping="Wrap" Text="{Binding WorkName, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="198"/>
+                    <Label Content="Work" HorizontalAlignment="Left" Margin="30,-3,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </GroupBox>
+            <Button Content="Assign" HorizontalAlignment="Left" Margin="90,195,0,0" VerticalAlignment="Top" Width="75" Click="ButtonAssign_Click"/>
+            <Button Content="Cancel" HorizontalAlignment="Right" Margin="0,195,90,0" VerticalAlignment="Top" Width="75" Click="ButtonCancel_Click"/>
+
+        </Grid>
+    </AdornerDecorator>
+</Window>

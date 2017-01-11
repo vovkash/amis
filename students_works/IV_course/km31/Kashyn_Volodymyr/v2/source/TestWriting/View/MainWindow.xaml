@@ -1,0 +1,47 @@
+﻿<Window x:Class="TestWriting.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodel="clr-namespace:TestWriting.ViewModel"
+        Style="{StaticResource VS2012WindowStyle}"
+        Title="Test writer" Height="350" FontSize="14" Width="525" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+
+        <Frame x:Name="frameContent" NavigationUIVisibility="Hidden" Background="White" Margin="0,30,0,0" Source="/TestWriting;component/View/Pages/WorksPage.xaml" Content="" >
+
+        </Frame>
+        <Menu Height="30" Background="Black" BorderBrush="White" FontSize="12" Foreground="White" VerticalAlignment="Top">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+
+
+            <MenuItem  x:Name="menu_assign" Grid.Column="0"  HorizontalAlignment="Left" Header="ASSIGNED TO ME" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="MenuItemAssignedToMe_Click" Loaded="MenuItem_Loaded"/>
+
+
+
+            <MenuItem x:Name="menu_works" Grid.Column="1" HorizontalAlignment="Left" Header="WORKS" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="MenuItem_Click"/>
+            <MenuItem x:Name="menu_taks" Grid.Column="2" HorizontalAlignment="Left" Header="TASKS" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="MenuItem_Click_1"/>
+            <MenuItem HorizontalAlignment="Right" Grid.Column="3"  Header="PROFILE" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="MenuItemProfileEdit_Click"/>
+            <MenuItem HorizontalAlignment="Right" Grid.Column="4" Header="SIGN OUT" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="MenuItemSignOut_Click"/>
+
+        </Menu>
+
+
+    </Grid>
+</Window>
